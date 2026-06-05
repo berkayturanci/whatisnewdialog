@@ -99,7 +99,7 @@ NewItemDialog
 * Use `clearSharedPref()` to delete condition storages.
 
 ## Sample
-Have a look at the [sample](https://github.com/nonzeroapps/whatisnewdialog/tree/master/whatisnewdialog-sample).
+Have a look at the [sample](https://github.com/berkayturanci/whatisnewdialog/tree/master/whatisnewdialog-sample).
 
 ## Support
 WhatIsNewDialog supports API level 16 and up.
@@ -114,15 +114,11 @@ WhatIsNewDialog supports API level 16 and up.
 
 ## Credits
 
-This project was initiated by [**NonZeroApps**](https://nonzeroapps.com). You can contribute to this project by submitting issues or/and by forking this repo and sending a pull request.
-
-![](preview/nonzeroapps.png)
-
 Author: [Berkay Turancı](https://github.com/berkayturanci)
 
 # License
 ```
-Copyright (C) 2017 NonZeroApps
+Copyright (C) 2017 Berkay Turancı
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
