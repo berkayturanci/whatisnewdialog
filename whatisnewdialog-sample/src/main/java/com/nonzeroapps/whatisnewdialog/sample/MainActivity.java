@@ -6,7 +6,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.nonzeroapps.android.whatisnewdialog.sample.R;
+import com.nonzeroapps.whatisnewdialog.sample.R;
 import com.nonzeroapps.whatisnewdialog.NewItemDialog;
 import com.nonzeroapps.whatisnewdialog.object.NewFeatureItem;
 

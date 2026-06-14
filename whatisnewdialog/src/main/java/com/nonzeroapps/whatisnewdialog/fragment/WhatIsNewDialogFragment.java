@@ -18,7 +18,7 @@ import com.nonzeroapps.whatisnewdialog.object.DialogSettings;
 import com.nonzeroapps.whatisnewdialog.object.NewFeatureItem;
 import com.nonzeroapps.whatisnewdialog.util.SharedPrefHelper;
 import com.nonzeroapps.whatisnewdialog.view.InkPageIndicator;
-import com.xgc1986.parallaxPagerTransformer.ParallaxPagerTransformer;
+import com.nonzeroapps.whatisnewdialog.util.ParallaxPagerTransformer;
 
 import java.util.ArrayList;
 
