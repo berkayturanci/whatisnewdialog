@@ -90,15 +90,11 @@ NewItemDialog.init(this)
 Have a look at the [sample](https://github.com/berkayturanci/whatisnewdialog/tree/master/whatisnewdialog-sample).
 
 ## Support
-WhatIsNewDialog supports API level 16 and up.
+WhatIsNewDialog supports API level 21 and up.
 
 ## Contribute
 
-1. Fork it
-2. Create your own branch (git checkout -b new-feature-branch)
-3. Commit your changes (git commit -am 'Some features added')
-4. Push to the your own branch (git push origin new-feature-branch)
-5. Create new Pull Request
+We welcome contributions! Please see our [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting Pull Requests to us.
 
 ## Credits
 
