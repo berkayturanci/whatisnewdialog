@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace 'com.nonzeroapps.whatisnewdialog.sample'
+    namespace = 'com.nonzeroapps.whatisnewdialog.sample'
     compileSdk 34
     defaultConfig {
         applicationId "com.nonzeroapps.whatisnewdialog.sample"
