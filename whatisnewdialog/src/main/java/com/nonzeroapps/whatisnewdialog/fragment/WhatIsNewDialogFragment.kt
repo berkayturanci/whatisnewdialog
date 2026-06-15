@@ -27,8 +27,20 @@ class WhatIsNewDialogFragment : DialogFragment() {
 
         val view = requireActivity().layoutInflater.inflate(R.layout.newfeaturedialog, null)
 
-        mNewFeatureItemArrayList = arguments?.getParcelableArrayList(NEW_FEATURE_ITEM_LIST)
-        val dialogSettings = arguments?.getParcelable<DialogSettings>(DIALOG_SETTINGS)
+        mNewFeatureItemArrayList =
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
+                arguments?.getParcelableArrayList(NEW_FEATURE_ITEM_LIST, NewFeatureItem::class.java)
+            } else {
+                @Suppress("DEPRECATION")
+                arguments?.getParcelableArrayList(NEW_FEATURE_ITEM_LIST)
+            }
+        val dialogSettings =
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
+                arguments?.getParcelable(DIALOG_SETTINGS, DialogSettings::class.java)
+            } else {
+                @Suppress("DEPRECATION")
+                arguments?.getParcelable(DIALOG_SETTINGS)
+            }
 
         mImageViewPager = view.findViewById(R.id.viewPager)
         mInkPageIndicator = view.findViewById(R.id.indicator)
