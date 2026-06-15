@@ -1,7 +1,12 @@
-## Description
-Please include a summary of the change and which issue is fixed.
+### Summary
+<!-- Describe the changes in this PR. Be clear and concise. -->
 
-## Type of change
+### Related issues
+<!-- Mention any related issues here. Use "Closes #N" to auto-close an issue, or "no issue" if this PR is standalone. -->
+Closes #
+
+### Testing Done
+<!-- Briefly describe how you tested these changes. -->
 - [ ] Bug fix (non-breaking change which fixes an issue)
 - [ ] New feature (non-breaking change which adds functionality)
 - [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
