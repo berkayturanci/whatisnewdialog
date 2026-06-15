@@ -90,7 +90,29 @@ NewItemDialog.init(this)
 Have a look at the [sample](https://github.com/berkayturanci/whatisnewdialog/tree/master/whatisnewdialog-sample).
 
 ## Support
-WhatIsNewDialog supports API level 21 and up.
+WhatIsNewDialog supports API level 21 and up. The library is written entirely in Kotlin.
+
+## Building & Testing
+
+Requirements: **JDK 17** and the Android SDK (`compileSdk 34`). The project ships a Gradle 9.5.1
+wrapper, so no local Gradle install is needed.
+
+```bash
+# Build the library and the sample app
+./gradlew assembleDebug
+
+# Run the unit tests (Robolectric) and the coverage gate
+./gradlew testDebugUnitTest jacocoTestCoverageVerification
+
+# Check / auto-fix code style (ktlint)
+./gradlew ktlintCheck
+./gradlew ktlintFormat
+```
+
+These are the same steps the CI pipeline runs on every push and pull request.
+
+> **Tip:** Keep the Gradle wrapper and the Android Gradle Plugin in sync. A wrapper bump without a
+> matching AGP version can break the build (Gradle 9 removed APIs older AGP versions relied on).
 
 ## Contribute
 

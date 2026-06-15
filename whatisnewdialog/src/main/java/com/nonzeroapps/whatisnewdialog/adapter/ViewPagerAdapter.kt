@@ -19,9 +19,7 @@ abstract class ViewPagerAdapter : PagerAdapter() {
     override fun isViewFromObject(
         view: View,
         `object`: Any,
-    ): Boolean {
-        return view === `object`
-    }
+    ): Boolean = view === `object`
 
     override fun destroyItem(
         container: ViewGroup,

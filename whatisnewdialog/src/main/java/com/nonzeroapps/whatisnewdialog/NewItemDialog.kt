@@ -9,7 +9,9 @@ import com.nonzeroapps.whatisnewdialog.model.NewFeatureItem
 import com.nonzeroapps.whatisnewdialog.util.SharedPrefHelper
 import java.util.ArrayList
 
-class NewItemDialog private constructor(private val mContext: Context) {
+class NewItemDialog private constructor(
+    private val mContext: Context,
+) {
     private var mNewFeatureItemArrayList: ArrayList<NewFeatureItem>? = null
     private val mDialogSettings = DialogSettings()
     private var mPositiveButtonListener: DialogInterface.OnClickListener? = null
@@ -79,9 +81,7 @@ class NewItemDialog private constructor(private val mContext: Context) {
         SharedPrefHelper.clearSharedPreferences(mContext)
     }
 
-    fun isConditionsSuitable(): Boolean {
-        return !SharedPrefHelper.isSeenBefore(mContext, mDialogSettings.getVersionName(mContext))
-    }
+    fun isConditionsSuitable(): Boolean = !SharedPrefHelper.isSeenBefore(mContext, mDialogSettings.getVersionName(mContext))
 
     fun showDialogIfConditionsSuitable(activity: AppCompatActivity) {
         if (activity.isFinishing) {
@@ -120,10 +120,9 @@ class NewItemDialog private constructor(private val mContext: Context) {
         private var mNewItemDialog: NewItemDialog? = null
 
         @JvmStatic
-        fun init(context: Context): NewItemDialog {
-            return mNewItemDialog ?: synchronized(this) {
-                mNewItemDialog ?: NewItemDialog(context).also { mNewItemDialog = it }
+        fun init(context: Context): NewItemDialog =
+            mNewItemDialog ?: synchronized(this) {
+                mNewItemDialog ?: NewItemDialog(context.applicationContext).also { mNewItemDialog = it }
             }
-        }
     }
 }

@@ -4,6 +4,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.1] - 2026-06-15
+### Fixed
+- **Build restored**: Aligned the Gradle/AGP toolchain so the project builds again. A wrapper-only
+  bump to Gradle 9.5.1 left AGP 8.2.2 referencing the removed `SelfResolvingDependency` API, breaking
+  every build. Upgraded AGP `8.2.2 → 8.13.2`, Kotlin `1.9.22 → 2.4.0`, ktlint-gradle `12.1.0 → 14.2.0`
+  and Dokka `1.9.10 → 2.2.0`.
+- **JitPack publishing**: Removed the `jitpack.yml` step that downgraded the Gradle wrapper to 8.4
+  (incompatible with AGP 8.13) and replaced it with an explicit `publishReleasePublicationToMavenLocal`
+  install step.
+- **Memory leak**: `NewItemDialog.init()` now stores the application context instead of the passed-in
+  (often `Activity`) context, preventing a leak via the static singleton.
+
+### Changed
+- **Full Kotlin conversion completed**: Converted the last Java source (`InkPageIndicator`) to Kotlin
+  and removed the placeholder `ExampleUnitTest.java`. The codebase is now 100% Kotlin.
+- Replaced deprecated `buildDir` usages with `layout.buildDirectory` for Gradle 10 readiness.
+
+### Added
+- **Unit tests** (Robolectric) for `DialogSettings`, `NewFeatureItem`, `SharedPrefHelper` and
+  `NewItemDialog`, including `@Parcelize` round-trips. Enabled `includeAndroidResources` for resource
+  access in unit tests.
+
 ## [1.2.0] - 2026-06-15
 ### Added
 - **Dark Mode Support**: Properly respects system dark mode with `textColorPrimary` and `textColorSecondary` attributes (Thanks to community fork).

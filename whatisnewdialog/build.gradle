@@ -23,22 +23,24 @@ task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest']) {
         html.required = true
     }
 
-    def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*']
-    def debugTree = fileTree(dir: "$buildDir/tmp/kotlin-classes/debug", excludes: fileFilter)
+    def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*', '**/view/**']
+    def buildDirFile = layout.buildDirectory.get().asFile
+    def debugTree = fileTree(dir: "$buildDirFile/tmp/kotlin-classes/debug", excludes: fileFilter)
     def mainSrc = "$projectDir/src/main/java"
 
     sourceDirectories.setFrom(files([mainSrc]))
     classDirectories.setFrom(files([debugTree]))
-    executionData.setFrom(fileTree(dir: project.buildDir, includes: [
+    executionData.setFrom(fileTree(dir: buildDirFile, includes: [
             'jacoco/testDebugUnitTest.exec'
     ]))
 }
 
 task jacocoTestCoverageVerification(type: JacocoCoverageVerification, dependsOn: 'jacocoTestReport') {
-    def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*']
-    def debugTree = fileTree(dir: "$buildDir/tmp/kotlin-classes/debug", excludes: fileFilter)
+    def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*', '**/view/**']
+    def buildDirFile = layout.buildDirectory.get().asFile
+    def debugTree = fileTree(dir: "$buildDirFile/tmp/kotlin-classes/debug", excludes: fileFilter)
     classDirectories.setFrom(files([debugTree]))
-    executionData.setFrom(fileTree(dir: project.buildDir, includes: [
+    executionData.setFrom(fileTree(dir: buildDirFile, includes: [
             'jacoco/testDebugUnitTest.exec'
     ]))
     violationRules {
@@ -58,8 +60,8 @@ android {
     defaultConfig {
         minSdk 21
         targetSdk 34
-        versionCode 10
-        versionName "1.2.0"
+        versionCode 11
+        versionName "1.2.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -75,6 +77,12 @@ android {
     }
     kotlinOptions {
         jvmTarget = '17'
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
     }
 
     publishing {
@@ -107,7 +115,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.nonzeroapps.whatisnewdialog'
                 artifactId = 'whatisnewdialog'
-                version = '1.2.0'
+                version = '1.2.1'
             }
         }
     }
