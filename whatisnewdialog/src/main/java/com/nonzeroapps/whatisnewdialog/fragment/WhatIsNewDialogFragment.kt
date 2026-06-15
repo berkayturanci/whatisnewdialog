@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.content.DialogInterface
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
+import androidx.core.os.BundleCompat
 import androidx.fragment.app.DialogFragment
 import androidx.viewpager.widget.ViewPager
 import com.nonzeroapps.whatisnewdialog.R
@@ -28,18 +29,12 @@ class WhatIsNewDialogFragment : DialogFragment() {
         val view = requireActivity().layoutInflater.inflate(R.layout.newfeaturedialog, null)
 
         mNewFeatureItemArrayList =
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
-                arguments?.getParcelableArrayList(NEW_FEATURE_ITEM_LIST, NewFeatureItem::class.java)
-            } else {
-                @Suppress("DEPRECATION")
-                arguments?.getParcelableArrayList(NEW_FEATURE_ITEM_LIST)
+            arguments?.let {
+                BundleCompat.getParcelableArrayList(it, NEW_FEATURE_ITEM_LIST, NewFeatureItem::class.java)
             }
         val dialogSettings =
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
-                arguments?.getParcelable(DIALOG_SETTINGS, DialogSettings::class.java)
-            } else {
-                @Suppress("DEPRECATION")
-                arguments?.getParcelable(DIALOG_SETTINGS)
+            arguments?.let {
+                BundleCompat.getParcelable(it, DIALOG_SETTINGS, DialogSettings::class.java)
             }
 
         mImageViewPager = view.findViewById(R.id.viewPager)
