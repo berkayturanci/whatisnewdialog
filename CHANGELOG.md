@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.2] - 2026-06-15
+### Removed
+- **Unused `com.google.android.material` dependency**: the library renders its dialog with the
+  AppCompat `AlertDialog` and never referenced any Material component or theme, so the dependency was
+  dropped. This also avoids forcing a `compileSdk` bump that the Material 1.14.x line would require,
+  and it stops leaking an unused transitive dependency onto consumers (supersedes Dependabot #41).
+
+### Changed
+- **Removed deprecated `Bundle` parcelable calls**: `WhatIsNewDialogFragment` now reads its arguments
+  through `androidx.core.os.BundleCompat`, dropping the manual `SDK_INT` branch and the
+  `@Suppress("DEPRECATION")` on the legacy `getParcelable`/`getParcelableArrayList` overloads.
+- Switched the `android.namespace` declarations to `=` assignment for Gradle 10 readiness.
+
 ## [1.2.1] - 2026-06-15
 ### Fixed
 - **Build restored**: Aligned the Gradle/AGP toolchain so the project builds again. A wrapper-only
