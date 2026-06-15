@@ -1,0 +1,24 @@
+name: PR Lint
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+
+jobs:
+  pr-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify PR Body Content
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const body = context.payload.pull_request.body || "";
+            const issueRegex = /(Closes #\d+|no issue)/i;
+            
+            if (!issueRegex.test(body)) {
+              core.setFailed("PR body must include a 'Related issues' section with 'Closes #N' or 'no issue'.");
+            }
+            
+            if (body.length < 20) {
+              core.setFailed("PR body must contain a meaningful summary.");
+            }
