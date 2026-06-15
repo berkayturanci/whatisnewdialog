@@ -8,7 +8,10 @@ class ParallaxPagerTransformer(private val id: Int) : ViewPager.PageTransformer 
     private val border = 0
     private val speed = 0.2f
 
-    override fun transformPage(view: View, position: Float) {
+    override fun transformPage(
+        view: View,
+        position: Float,
+    ) {
         val parallaxView = view.findViewById<View>(id)
 
         if (parallaxView != null) {

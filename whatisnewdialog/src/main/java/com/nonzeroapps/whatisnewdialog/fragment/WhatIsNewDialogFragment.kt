@@ -1,10 +1,8 @@
 package com.nonzeroapps.whatisnewdialog.fragment
 
 import android.app.Dialog
-import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import androidx.viewpager.widget.ViewPager
@@ -18,7 +16,6 @@ import com.nonzeroapps.whatisnewdialog.view.InkPageIndicator
 import java.util.ArrayList
 
 class WhatIsNewDialogFragment : DialogFragment() {
-
     private lateinit var mImageViewPager: ViewPager
     private lateinit var mInkPageIndicator: InkPageIndicator
     private var mNewFeatureItemArrayList: ArrayList<NewFeatureItem>? = null
@@ -68,12 +65,13 @@ class WhatIsNewDialogFragment : DialogFragment() {
     }
 
     private fun initPage(dialogSettings: DialogSettings) {
-        val adapter = ImageViewPagerAdapter(
-            requireContext(),
-            mNewFeatureItemArrayList ?: ArrayList(),
-            dialogSettings.isUsePaletteForDescBackground,
-            dialogSettings.isUsePaletteForImageBackground
-        )
+        val adapter =
+            ImageViewPagerAdapter(
+                requireContext(),
+                mNewFeatureItemArrayList ?: ArrayList(),
+                dialogSettings.isUsePaletteForDescBackground,
+                dialogSettings.isUsePaletteForImageBackground,
+            )
 
         mImageViewPager.adapter = adapter
         mInkPageIndicator.setViewPager(mImageViewPager)
@@ -95,7 +93,7 @@ class WhatIsNewDialogFragment : DialogFragment() {
             newFeatureItemArrayList: ArrayList<NewFeatureItem>?,
             dialogSettings: DialogSettings,
             positiveButtonListener: DialogInterface.OnClickListener?,
-            neutralButtonListener: DialogInterface.OnClickListener?
+            neutralButtonListener: DialogInterface.OnClickListener?,
         ): WhatIsNewDialogFragment {
             val whatIsNewDialogFragment = WhatIsNewDialogFragment()
 

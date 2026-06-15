@@ -31,9 +31,8 @@ class ImageViewPagerAdapter(
     private val mContext: Context,
     private val mNewFeatureItems: ArrayList<NewFeatureItem>,
     private val mUsePaletteForDescBackground: Boolean,
-    private val mUsePaletteForImageBackground: Boolean
+    private val mUsePaletteForImageBackground: Boolean,
 ) : ViewPagerAdapter() {
-
     private var finalHeight = 0
     private var finalWidth = 0
 
@@ -53,94 +52,104 @@ class ImageViewPagerAdapter(
 
         progress.visibility = View.VISIBLE
         val vto = imageView.viewTreeObserver
-        vto.addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
-            override fun onPreDraw(): Boolean {
-                imageView.viewTreeObserver.removeOnPreDrawListener(this)
-                finalHeight = imageView.measuredHeight
-                finalWidth = imageView.measuredWidth
+        vto.addOnPreDrawListener(
+            object : ViewTreeObserver.OnPreDrawListener {
+                override fun onPreDraw(): Boolean {
+                    imageView.viewTreeObserver.removeOnPreDrawListener(this)
+                    finalHeight = imageView.measuredHeight
+                    finalWidth = imageView.measuredWidth
 
-                val isGif = newFeatureItem.imageResource?.lowercase()?.endsWith(".gif") ?: false
+                    val isGif = newFeatureItem.imageResource?.lowercase()?.endsWith(".gif") ?: false
 
-                val requestManager = Glide.with(mContext)
-                var requestOptions = RequestOptions()
-                    .fitCenter()
-                    .diskCacheStrategy(DiskCacheStrategy.NONE)
-                    .skipMemoryCache(true)
+                    val requestManager = Glide.with(mContext)
+                    var requestOptions =
+                        RequestOptions()
+                            .fitCenter()
+                            .diskCacheStrategy(DiskCacheStrategy.NONE)
+                            .skipMemoryCache(true)
 
-                if (finalHeight != 0 && finalWidth != 0) {
-                    requestOptions = requestOptions.override(finalWidth, finalHeight)
-                }
-
-                if (isGif) {
-                    val drawableTypeRequest = requestManager
-                        .setDefaultRequestOptions(requestOptions)
-                        .asGif()
-                        .load(newFeatureItem.imageResource)
-                        .listener(object : RequestListener<GifDrawable> {
-                            override fun onLoadFailed(
-                                e: GlideException?,
-                                model: Any?,
-                                target: Target<GifDrawable>,
-                                isFirstResource: Boolean
-                            ): Boolean {
-                                progress.visibility = View.GONE
-                                return false
-                            }
-
-                            override fun onResourceReady(
-                                resource: GifDrawable,
-                                model: Any,
-                                target: Target<GifDrawable>?,
-                                dataSource: DataSource,
-                                isFirstResource: Boolean
-                            ): Boolean {
-                                progress.visibility = View.GONE
-                                val bitmap = resource.firstFrame
-                                putBackgroundColors(bitmap, imageView, linearLayout, textViewTitle, textViewDesc)
-                                return false
-                            }
-                        })
-
-                    drawableTypeRequest.into(imageView)
-                } else {
-                    var drawableTypeRequest = if (newFeatureItem.imageResource == null) {
-                        requestManager.setDefaultRequestOptions(requestOptions)
-                            .load(newFeatureItem.imageDrawableResource)
-                    } else {
-                        requestManager.setDefaultRequestOptions(requestOptions)
-                            .load(newFeatureItem.imageResource)
+                    if (finalHeight != 0 && finalWidth != 0) {
+                        requestOptions = requestOptions.override(finalWidth, finalHeight)
                     }
-                    drawableTypeRequest = drawableTypeRequest
-                        .listener(object : RequestListener<Drawable> {
-                            override fun onLoadFailed(
-                                e: GlideException?,
-                                model: Any?,
-                                target: Target<Drawable>,
-                                isFirstResource: Boolean
-                            ): Boolean {
-                                progress.visibility = View.GONE
-                                return false
-                            }
 
-                            override fun onResourceReady(
-                                resource: Drawable,
-                                model: Any,
-                                target: Target<Drawable>?,
-                                dataSource: DataSource,
-                                isFirstResource: Boolean
-                            ): Boolean {
-                                progress.visibility = View.GONE
-                                val bitmap = (resource as BitmapDrawable).bitmap
-                                putBackgroundColors(bitmap, imageView, linearLayout, textViewTitle, textViewDesc)
-                                return false
-                            }
-                        })
+                    if (isGif) {
+                        val drawableTypeRequest =
+                            requestManager
+                                .setDefaultRequestOptions(requestOptions)
+                                .asGif()
+                                .load(newFeatureItem.imageResource)
+                                .listener(
+                                    object : RequestListener<GifDrawable> {
+                                        override fun onLoadFailed(
+                                            e: GlideException?,
+                                            model: Any?,
+                                            target: Target<GifDrawable>,
+                                            isFirstResource: Boolean,
+                                        ): Boolean {
+                                            progress.visibility = View.GONE
+                                            return false
+                                        }
 
-                    drawableTypeRequest.into(imageView)
+                                        override fun onResourceReady(
+                                            resource: GifDrawable,
+                                            model: Any,
+                                            target: Target<GifDrawable>?,
+                                            dataSource: DataSource,
+                                            isFirstResource: Boolean,
+                                        ): Boolean {
+                                            progress.visibility = View.GONE
+                                            val bitmap = resource.firstFrame
+                                            putBackgroundColors(bitmap, imageView, linearLayout, textViewTitle, textViewDesc)
+                                            return false
+                                        }
+                                    },
+                                )
+
+                        drawableTypeRequest.into(imageView)
+                    } else {
+                        var drawableTypeRequest =
+                            if (newFeatureItem.imageResource == null) {
+                                requestManager.setDefaultRequestOptions(requestOptions)
+                                    .load(newFeatureItem.imageDrawableResource)
+                            } else {
+                                requestManager.setDefaultRequestOptions(requestOptions)
+                                    .load(newFeatureItem.imageResource)
+                            }
+                        drawableTypeRequest =
+                            drawableTypeRequest
+                                .listener(
+                                    object : RequestListener<Drawable> {
+                                        override fun onLoadFailed(
+                                            e: GlideException?,
+                                            model: Any?,
+                                            target: Target<Drawable>,
+                                            isFirstResource: Boolean,
+                                        ): Boolean {
+                                            progress.visibility = View.GONE
+                                            return false
+                                        }
+
+                                        override fun onResourceReady(
+                                            resource: Drawable,
+                                            model: Any,
+                                            target: Target<Drawable>?,
+                                            dataSource: DataSource,
+                                            isFirstResource: Boolean,
+                                        ): Boolean {
+                                            progress.visibility = View.GONE
+                                            val bitmap = (resource as BitmapDrawable).bitmap
+                                            putBackgroundColors(bitmap, imageView, linearLayout, textViewTitle, textViewDesc)
+                                            return false
+                                        }
+                                    },
+                                )
+
+                        drawableTypeRequest.into(imageView)
+                    }
+                    return true
                 }
-                return true
-            }
-        })
+            },
+        )
 
         return view
     }
@@ -154,7 +163,7 @@ class ImageViewPagerAdapter(
         imageView: ImageView,
         linearLayout: LinearLayout,
         textViewTitle: TextView,
-        textViewDesc: TextView
+        textViewDesc: TextView,
     ) {
         val usePalette = mUsePaletteForDescBackground || mUsePaletteForImageBackground
         if (!usePalette) {

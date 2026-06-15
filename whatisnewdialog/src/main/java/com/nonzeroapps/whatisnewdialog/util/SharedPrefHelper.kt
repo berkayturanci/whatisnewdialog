@@ -20,12 +20,19 @@ object SharedPrefHelper {
     }
 
     @JvmStatic
-    fun setSeenBefore(context: Context, versionName: String, isSeenBefore: Boolean) {
+    fun setSeenBefore(
+        context: Context,
+        versionName: String,
+        isSeenBefore: Boolean,
+    ) {
         getPreferencesEditor(context).putBoolean(versionName, isSeenBefore).apply()
     }
 
     @JvmStatic
-    fun isSeenBefore(context: Context, versionName: String): Boolean {
+    fun isSeenBefore(
+        context: Context,
+        versionName: String,
+    ): Boolean {
         return getPreferences(context).getBoolean(versionName, false)
     }
 }

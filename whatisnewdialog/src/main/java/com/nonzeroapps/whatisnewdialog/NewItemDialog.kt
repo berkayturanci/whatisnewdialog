@@ -10,7 +10,6 @@ import com.nonzeroapps.whatisnewdialog.util.SharedPrefHelper
 import java.util.ArrayList
 
 class NewItemDialog private constructor(private val mContext: Context) {
-
     private var mNewFeatureItemArrayList: ArrayList<NewFeatureItem>? = null
     private val mDialogSettings = DialogSettings()
     private var mPositiveButtonListener: DialogInterface.OnClickListener? = null
@@ -97,12 +96,13 @@ class NewItemDialog private constructor(private val mContext: Context) {
     fun showDialog(activity: AppCompatActivity) {
         try {
             if (activity.supportFragmentManager.findFragmentByTag(DIALOG_TAG) == null) {
-                val newFragment = WhatIsNewDialogFragment.newInstance(
-                    mNewFeatureItemArrayList,
-                    mDialogSettings,
-                    mPositiveButtonListener,
-                    mNegativeButtonListener
-                )
+                val newFragment =
+                    WhatIsNewDialogFragment.newInstance(
+                        mNewFeatureItemArrayList,
+                        mDialogSettings,
+                        mPositiveButtonListener,
+                        mNegativeButtonListener,
+                    )
 
                 val transaction = activity.supportFragmentManager.beginTransaction()
                 transaction.add(newFragment, DIALOG_TAG)

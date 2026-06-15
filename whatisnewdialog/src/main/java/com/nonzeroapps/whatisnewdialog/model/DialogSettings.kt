@@ -2,9 +2,7 @@ package com.nonzeroapps.whatisnewdialog.model
 
 import android.content.Context
 import android.os.Parcelable
-import androidx.annotation.StringRes
 import com.nonzeroapps.whatisnewdialog.R
-import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -22,9 +20,8 @@ class DialogSettings(
     var versionName: String? = null,
     var titleText: String? = null,
     var positiveText: String? = null,
-    var neutralText: String? = null
+    var neutralText: String? = null,
 ) : Parcelable {
-
     fun getTitleText(context: Context): String {
         if (titleText == null) {
             titleText = context.getString(titleResId)

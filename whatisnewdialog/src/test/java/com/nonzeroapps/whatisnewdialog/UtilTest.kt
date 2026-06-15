@@ -11,7 +11,6 @@ import org.robolectric.annotation.Config
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [34])
 class UtilTest {
-
     @Test
     fun getContrastColor_returnsWhiteForDarkColor() {
         val darkColor = Color.rgb(0, 0, 0)

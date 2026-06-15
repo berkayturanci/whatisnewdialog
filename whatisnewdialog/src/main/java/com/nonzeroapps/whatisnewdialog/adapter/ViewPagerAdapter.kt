@@ -7,17 +7,27 @@ import androidx.viewpager.widget.PagerAdapter
 abstract class ViewPagerAdapter : PagerAdapter() {
     abstract fun getItem(position: Int): View
 
-    override fun instantiateItem(container: ViewGroup, position: Int): Any {
+    override fun instantiateItem(
+        container: ViewGroup,
+        position: Int,
+    ): Any {
         val itemView = getItem(position)
         container.addView(itemView)
         return itemView
     }
 
-    override fun isViewFromObject(view: View, `object`: Any): Boolean {
+    override fun isViewFromObject(
+        view: View,
+        `object`: Any,
+    ): Boolean {
         return view === `object`
     }
 
-    override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
+    override fun destroyItem(
+        container: ViewGroup,
+        position: Int,
+        `object`: Any,
+    ) {
         container.removeView(`object` as View)
     }
 }

@@ -9,9 +9,11 @@ data class NewFeatureItem(
     var featureTitle: String? = null,
     var featureDesc: String? = null,
     var imageResource: String? = null,
-    var imageDrawableResource: Int = 0
+    var imageDrawableResource: Int = 0,
 ) : Parcelable {
-    fun setImageResource(@DrawableRes imageResource: Int) {
+    fun setImageResource(
+        @DrawableRes imageResource: Int,
+    ) {
         this.imageDrawableResource = imageResource
     }
 }
