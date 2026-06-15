@@ -1,5 +1,5 @@
 # WhatIsNewDialog
- [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![API](https://img.shields.io/badge/API-16%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=16) [![](https://jitpack.io/v/nonzeroapps/whatisnewdialog.svg)](https://jitpack.io/#nonzeroapps/whatisnewdialog)
+ [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21) [![](https://jitpack.io/v/nonzeroapps/whatisnewdialog.svg)](https://jitpack.io/#nonzeroapps/whatisnewdialog) [![Build Status](https://github.com/berkayturanci/whatisnewdialog/actions/workflows/build.yml/badge.svg)](https://github.com/berkayturanci/whatisnewdialog/actions)
  
 What is new dialog for Android is used for presenting new features in the the app. It can be used in the activity starts, from menu or from a button. It is highly customizable and flexible. It has two options (customizable) where user can either select remind me later or close. Close selection will record that dialog for given version name is seen. So next time it won't be shown to the user. It uses Glide for showing gif and images. 
 
@@ -33,63 +33,51 @@ If you want the dialog to appear on the start of the app, just add the `showDial
 
 Use the dialog as it is
 
-```java
+```kotlin
+val newItemDialog = NewItemDialog.init(this)
+    .setVersionName("1.2.0")
+    .setDialogTitle("New Features of 1.2.0 Version!")
+    .setItems(arrayList)
 
-NewItemDialog newItemDialog = NewItemDialog
-        .init(this)
-        .setVersionName("1.2.0")
-        .setDialogTitle("New Features of 1.2.0 Version!")
-        .setItems(arrayList);
-
-
-newItemDialog.showDialog(this);
-
+newItemDialog.showDialog(this)
 ```
 
 or for the large example 
 
-```java
-
+```kotlin
 // Create and show the dialog.
+val arrayList = ArrayList<NewFeatureItem>()
 
-ArrayList<NewFeatureItem> arrayList = new ArrayList<>();
-        
-NewFeatureItem newFeatureItem = new NewFeatureItem();
-newFeatureItem.setFeatureDesc("From now on, you can search all things with keys. For searching please go to ");
-newFeatureItem.setFeatureTitle("Searching");
-newFeatureItem.setImageResource(R.drawable.androidpicture);
-arrayList.add(newFeatureItem);
+val newFeatureItem = NewFeatureItem().apply {
+    featureDesc = "From now on, you can search all things with keys. For searching please go to "
+    featureTitle = "Searching"
+    setImageResource(R.drawable.androidpicture)
+}
+arrayList.add(newFeatureItem)
 
-NewFeatureItem newFeatureItem2 = new NewFeatureItem();
-newFeatureItem2.setFeatureTitle("Feature 2");
-newFeatureItem2.setFeatureDesc("You waited long for this feature, we know that!!!\n\n From now on, you can follow your friend with our application. This makes our application super and cool. Don't believe my words, try and see it. If you want another features like this please contact with us via e-mail or feedback button.");
-newFeatureItem2.setImageResource("https://media.giphy.com/media/JltOMwYmi0VrO/giphy.gif");
-arrayList.add(newFeatureItem2);
+val newFeatureItem2 = NewFeatureItem().apply {
+    featureTitle = "Feature 2"
+    featureDesc = "You waited long for this feature, we know that!!!\n\n From now on, you can follow your friend with our application."
+    imageResource = "https://media.giphy.com/media/JltOMwYmi0VrO/giphy.gif"
+}
+arrayList.add(newFeatureItem2)
 
-NewItemDialog
-    .init(this)
+NewItemDialog.init(this)
     .setVersionName("1.2.0")
     .setDialogTitle("New Features of 1.2.0 Version!")
     .setPositiveButtonTitle("Close")
     .setNeutralButtonTitle("Show Me Later")
     .setCancelable(false)
     .setItems(arrayList)
-    .setUsePaletteForDescBackground(false) //This can be used for adjusting not using palette (Can be Used For Night Mode)
-    .setUsePaletteForImageBackground(false) //This can be used for adjusting not using palette (Can be Used For Night Mode)
-    .setCancelButtonListener(new DialogInterface.OnClickListener() {
-        @Override
-        public void onClick(DialogInterface dialog, int which) {
-            Toast.makeText(MainActivity.this, "Close Clicked", Toast.LENGTH_LONG).show();
-         }
-    })
-    .setShowLaterButtonListener(new DialogInterface.OnClickListener() {
-         @Override
-         public void onClick(DialogInterface dialog, int which) {
-            Toast.makeText(MainActivity.this, "Remind Me Later Clicked", Toast.LENGTH_LONG).show();
-         }
-    })
-    .showDialog(this);
-
+    .setUsePaletteForDescBackground(false) // Can be Used For Night Mode
+    .setUsePaletteForImageBackground(false) // Can be Used For Night Mode
+    .setCancelButtonListener { dialog, which ->
+        Toast.makeText(this, "Close Clicked", Toast.LENGTH_LONG).show()
+    }
+    .setShowLaterButtonListener { dialog, which ->
+        Toast.makeText(this, "Remind Me Later Clicked", Toast.LENGTH_LONG).show()
+    }
+    .showDialog(this)
 ```
 
 ### Note
