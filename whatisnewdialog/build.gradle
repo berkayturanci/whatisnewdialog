@@ -15,8 +15,8 @@ android {
     defaultConfig {
         minSdk 21
         targetSdk 34
-        versionCode 9
-        versionName "1.1.1"
+        versionCode 10
+        versionName "1.2.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -64,7 +64,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.nonzeroapps.whatisnewdialog'
                 artifactId = 'whatisnewdialog'
-                version = '1.1.1'
+                version = '1.2.0'
             }
         }
     }
