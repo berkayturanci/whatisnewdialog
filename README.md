@@ -1,17 +1,32 @@
 # WhatIsNewDialog
- [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21) [![](https://jitpack.io/v/nonzeroapps/whatisnewdialog.svg)](https://jitpack.io/#nonzeroapps/whatisnewdialog) [![Build Status](https://github.com/berkayturanci/whatisnewdialog/actions/workflows/build.yml/badge.svg)](https://github.com/berkayturanci/whatisnewdialog/actions)
+ [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21) [![](https://jitpack.io/v/berkayturanci/whatisnewdialog.svg)](https://jitpack.io/#berkayturanci/whatisnewdialog) [![Build Status](https://github.com/berkayturanci/whatisnewdialog/actions/workflows/build.yml/badge.svg)](https://github.com/berkayturanci/whatisnewdialog/actions)
  
-What is new dialog for Android is used for presenting new features in the the app. It can be used in the activity starts, from menu or from a button. It is highly customizable and flexible. It has two options (customizable) where user can either select remind me later or close. Close selection will record that dialog for given version name is seen. So next time it won't be shown to the user. It uses Glide for showing gif and images. 
+What is new dialog for Android is used for presenting new features in the app. It can be used in the activity starts, from menu or from a button. It is highly customizable and flexible. It has two options (customizable) where user can either select remind me later or close. Close selection will record that dialog for given version name is seen. So next time it won't be shown to the user. It uses Glide for showing gif and images. 
 
 ![](preview/usage.gif)
 ![](preview/darkModeExample.png)
 
 ## Installation
 
-### Gradle
-You can download from jitpack.
+The library is published via [JitPack](https://jitpack.io/#berkayturanci/whatisnewdialog).
 
-https://jitpack.io/#nonzeroapps/whatisnewdialog
+**1.** Add the JitPack repository (in `settings.gradle` for newer projects, or the root `build.gradle`):
+
+```gradle
+dependencyResolutionManagement {
+    repositories {
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+
+**2.** Add the dependency:
+
+```gradle
+dependencies {
+    implementation 'com.github.berkayturanci:whatisnewdialog:1.2.2'
+}
+```
 
 ## Features
 - Add unlimited pages for dialog
