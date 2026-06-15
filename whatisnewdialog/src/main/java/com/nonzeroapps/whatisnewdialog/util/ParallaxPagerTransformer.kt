@@ -4,7 +4,9 @@ import android.view.View
 import androidx.viewpager.widget.ViewPager
 import kotlin.math.abs
 
-class ParallaxPagerTransformer(private val id: Int) : ViewPager.PageTransformer {
+class ParallaxPagerTransformer(
+    private val id: Int,
+) : ViewPager.PageTransformer {
     private val border = 0
     private val speed = 0.2f
 

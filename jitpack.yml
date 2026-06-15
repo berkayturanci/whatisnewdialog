@@ -1,4 +1,4 @@
 jdk:
   - openjdk17
-before_install:
-  - ./gradlew wrapper --gradle-version 8.4
+install:
+  - ./gradlew :whatisnewdialog:publishReleasePublicationToMavenLocal -x ktlintCheck

@@ -109,10 +109,12 @@ class ImageViewPagerAdapter(
                     } else {
                         var drawableTypeRequest =
                             if (newFeatureItem.imageResource == null) {
-                                requestManager.setDefaultRequestOptions(requestOptions)
+                                requestManager
+                                    .setDefaultRequestOptions(requestOptions)
                                     .load(newFeatureItem.imageDrawableResource)
                             } else {
-                                requestManager.setDefaultRequestOptions(requestOptions)
+                                requestManager
+                                    .setDefaultRequestOptions(requestOptions)
                                     .load(newFeatureItem.imageResource)
                             }
                         drawableTypeRequest =
@@ -154,9 +156,7 @@ class ImageViewPagerAdapter(
         return view
     }
 
-    override fun getCount(): Int {
-        return mNewFeatureItems.size
-    }
+    override fun getCount(): Int = mNewFeatureItems.size
 
     private fun putBackgroundColors(
         bitmap: Bitmap?,
