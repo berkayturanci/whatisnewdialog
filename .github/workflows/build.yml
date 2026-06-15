@@ -24,4 +24,10 @@ jobs:
       run: chmod +x gradlew
 
     - name: Build with Gradle
-      run: ./gradlew build
+      run: ./gradlew assembleDebug
+
+    - name: Run Tests & Coverage
+      run: ./gradlew testDebugUnitTest jacocoTestCoverageVerification
+
+    - name: Run Linter
+      run: ./gradlew ktlintCheck
