@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Verify PR Body Content
-        uses: actions/github-script@v6
+        uses: actions/github-script@v9
         with:
           script: |
             const body = context.payload.pull_request.body || "";
