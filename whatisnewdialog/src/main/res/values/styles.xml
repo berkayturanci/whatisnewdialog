@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+      DayNight-aware theme for the What's New AlertDialog. Passed explicitly to
+      AlertDialog.Builder(context, R.style.Theme_WhatIsNewDialog) so the dialog frame
+      (title bar, button bar, window background) follows the system/app dark mode instead
+      of inheriting the consumer app's alertDialogTheme, which previously left the title and
+      button panels light while the content followed dark mode. Light mode is unchanged.
+    -->
+    <style name="Theme.WhatIsNewDialog" parent="Theme.AppCompat.DayNight.Dialog.Alert">
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+</resources>

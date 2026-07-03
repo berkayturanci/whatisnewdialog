@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.4] - 2026-07-03
+### Fixed
+- **Dark mode: dialog frame stayed light**: the dialog was built with `AlertDialog.Builder(context)`
+  and no theme, so its title bar, button bar, and window background inherited the consuming app's
+  `alertDialogTheme` and rendered light even while the page content followed dark mode. The builder
+  now uses an explicit DayNight theme (`Theme.WhatIsNewDialog`, parent
+  `Theme.AppCompat.DayNight.Dialog.Alert`), so the whole dialog follows the system/app dark mode.
+  Light mode is unchanged.
+
 ## [1.2.3] - 2026-07-03
 ### Fixed
 - **Release build broken for R8 consumers**: the bundled consumer ProGuard rules shipped Glide's

@@ -24,7 +24,7 @@ dependencyResolutionManagement {
 
 ```gradle
 dependencies {
-    implementation 'com.github.berkayturanci:whatisnewdialog:1.2.3'
+    implementation 'com.github.berkayturanci:whatisnewdialog:1.2.4'
 }
 ```
 
