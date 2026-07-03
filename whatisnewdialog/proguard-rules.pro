@@ -32,5 +32,8 @@
   public *;
 }
 
-# for DexGuard only
--keepresourcexmlelements manifest/application/meta-data@value=GlideModule
+# NOTE: Glide's "-keepresourcexmlelements manifest/application/meta-data@value=GlideModule"
+# rule is intentionally omitted. It is a DexGuard-only option; R8 (the default shrinker)
+# rejects it with "Unknown option "-keepresourcexmlelements"", which fails minifyRelease
+# for every consumer that ships these consumer ProGuard rules. Consumers on DexGuard can
+# add it themselves.
