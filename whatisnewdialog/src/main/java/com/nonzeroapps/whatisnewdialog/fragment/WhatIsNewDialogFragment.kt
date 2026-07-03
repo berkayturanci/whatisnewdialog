@@ -45,7 +45,7 @@ class WhatIsNewDialogFragment : DialogFragment() {
             initPage(dialogSettings)
         }
 
-        val builder = AlertDialog.Builder(context).setView(view)
+        val builder = AlertDialog.Builder(context, R.style.Theme_WhatIsNewDialog).setView(view)
 
         if (dialogSettings != null) {
             if (dialogSettings.isShowTitle) {
