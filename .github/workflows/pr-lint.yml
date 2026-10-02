@@ -10,6 +10,11 @@ permissions:
 
 jobs:
   pr-lint:
+    # Dependabot writes its own PR bodies, which carry no "Closes #N" / "no issue" line.
+    # Key off the PR author, not github.actor: actor becomes whoever last pushed to the
+    # branch (e.g. an "Update branch" click), which would re-enable the lint on these PRs.
+    # A job skipped by `if:` reports success, so the required `pr-lint` check is still satisfied.
+    if: github.event.pull_request.user.login != 'dependabot[bot]'
     runs-on: ubuntu-latest
     steps:
       - name: Verify PR Body Content
