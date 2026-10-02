@@ -109,7 +109,7 @@ WhatIsNewDialog supports API level 21 and up. The library is written entirely in
 
 ## Building & Testing
 
-Requirements: **JDK 17** and the Android SDK (`compileSdk 34`). The project ships a Gradle 9.5.1
+Requirements: **JDK 17** and the Android SDK (`compileSdk 37`). The project ships a Gradle 9.5.1
 wrapper, so no local Gradle install is needed.
 
 ```bash
