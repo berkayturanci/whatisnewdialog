@@ -21,6 +21,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `ByteBufferUtil.fromStream`. Supersedes Dependabot #57 and #58.
 - AppCompat 1.7.1 → 1.8.0 (library and sample). Supersedes Dependabot #63.
 - `compileSdk` 34 → 37 in the library and the sample. `targetSdk` is unchanged at 34.
+- Kotlin 2.4.0 → 2.4.20 (#68) and Robolectric 4.16.1 → 4.17 (#69).
+
+### Build
+- Android Gradle Plugin 8.13.2 → 9.4.1 and Gradle wrapper 9.5.1 → 9.8.0. Gradle 9.6.0 removed an
+  internal API that AGP 8.13.2 used, so the wrapper cannot move without AGP. Supersedes Dependabot #70.
+- AGP 9 runs with the transitional `android.builtInKotlin=false` and `android.newDsl=false` opt-outs,
+  which keep the existing Kotlin plugin setup and JaCoCo class paths. Both are removed in AGP 10.
+- Sample app: `proguard-android.txt` → `proguard-android-optimize.txt`, which AGP 9 requires. The
+  sample's release build has `minifyEnabled false`, so this does not change its output.
 
 ## [1.2.4] - 2026-07-03
 ### Fixed

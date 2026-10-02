@@ -45,7 +45,13 @@ name; the package root is `com.nonzeroapps.whatisnewdialog`).
 Versions are pinned and must stay mutually compatible (Gradle 9 removed APIs that
 older AGP referenced):
 
-- Gradle wrapper **9.5.1**, AGP **8.13.2**, Kotlin **2.4.0** (JVM target 17).
+- Gradle wrapper **9.8.0**, AGP **9.4.1**, Kotlin **2.4.20** (JVM target 17).
+- AGP 9 runs with two transitional opt-outs in `gradle.properties`:
+  `android.builtInKotlin=false` and `android.newDsl=false`. They keep the
+  `org.jetbrains.kotlin.android` plugin, its `kotlinOptions` DSL and the
+  `build/tmp/kotlin-classes/<variant>` output that JaCoCo reads. Both flags are
+  removed in AGP 10, so migrating to built-in Kotlin (and repointing JaCoCo's
+  class directories) is a prerequisite for that upgrade.
 - ktlint-gradle **14.2.0**, dokka **2.2.0**, JaCoCo **0.8.11**.
 - `compileSdk` 37, `targetSdk` 34, `minSdk` 23. Requires JDK 17+.
   `minSdk` follows AndroidX and Glide, which both require 23 (Glide 5.0.8+ also
