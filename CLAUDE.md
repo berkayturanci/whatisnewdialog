@@ -47,7 +47,9 @@ older AGP referenced):
 
 - Gradle wrapper **9.5.1**, AGP **8.13.2**, Kotlin **2.4.0** (JVM target 17).
 - ktlint-gradle **14.2.0**, dokka **2.2.0**, JaCoCo **0.8.11**.
-- `compileSdk`/`targetSdk` 34, `minSdk` 21. Requires JDK 17+.
+- `compileSdk` 37, `targetSdk` 34, `minSdk` 23. Requires JDK 17+.
+  `minSdk` follows AndroidX and Glide, which both require 23 (Glide 5.0.8+ also
+  requires `compileSdk` 37 and passes that requirement on to consumers).
 
 > If Dependabot bumps the Gradle wrapper, AGP almost certainly has to move with it.
 > A wrapper-only bump caused the original breakage (`SelfResolvingDependency`).

@@ -4,6 +4,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+### Changed (breaking for consumers)
+- **`minSdk` raised from 21 to 23 (Android 6.0).** Glide 5.0.8+ and AppCompat 1.8.0 both moved
+  to `minSdk` 23, matching AndroidX. Staying on 21 would freeze both dependencies, so apps that still
+  support Android 5.0/5.1 (API 21–22) must stay on the previous release of this library.
+- **Consumers now need `compileSdk` 37.** Glide 5.0.8+ declares it in its AAR metadata, so it
+  propagates to every app that depends on this library. Release 1.2.2 dropped Material partly to
+  avoid forcing a `compileSdk` bump; Glide cannot be dropped the same way because the dialog uses it
+  to load images and GIFs.
+- This changes supported platform levels, so the next release should not be a patch release.
+
+### Updated
+- Glide (and its annotation processor) 5.0.7 → 5.0.9: fixes OutOfMemory and ANR issues with
+  `ImageDecoder`, unbounded allocations when decoding from an `InputStream`, and a buffer leak in
+  `ByteBufferUtil.fromStream`. Supersedes Dependabot #57 and #58.
+- AppCompat 1.7.1 → 1.8.0 (library and sample). Supersedes Dependabot #63.
+- `compileSdk` 34 → 37 in the library and the sample. `targetSdk` is unchanged at 34.
+
 ## [1.2.4] - 2026-07-03
 ### Fixed
 - **Dark mode: dialog frame stayed light**: the dialog was built with `AlertDialog.Builder(context)`
