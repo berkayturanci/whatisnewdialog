@@ -99,7 +99,7 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     testImplementation 'junit:junit:4.13.2'
-    testImplementation 'org.robolectric:robolectric:4.16.1'
+    testImplementation 'org.robolectric:robolectric:4.17'
 
     implementation 'androidx.appcompat:appcompat:1.7.1'
     implementation 'com.github.bumptech.glide:glide:5.0.7'
