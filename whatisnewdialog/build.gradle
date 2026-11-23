@@ -102,7 +102,7 @@ dependencies {
     testImplementation 'org.robolectric:robolectric:4.17'
 
     implementation 'androidx.appcompat:appcompat:1.8.0'
-    implementation 'com.github.bumptech.glide:glide:5.0.9'
+    implementation 'com.github.bumptech.glide:glide:5.0.10'
     annotationProcessor 'com.github.bumptech.glide:compiler:5.0.9'
     implementation 'androidx.palette:palette:1.0.0'
 }
